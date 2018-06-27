@@ -6,6 +6,7 @@
   "repository": "git+https://github.com/Monadical-SAS/inferno-redux-time.git",
   "license": "MIT",
   "dependencies": {
+    "aliasify": "^2.1.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-inferno": "^5.0.1",
     "babel-plugin-root-import": "^5.1.0",
@@ -62,8 +63,6 @@
           "rootPathPrefix": "@"
         }
       ],
-      "syntax-function-bind",
-      "transform-function-bind",
       "transform-runtime"
     ]
   }
