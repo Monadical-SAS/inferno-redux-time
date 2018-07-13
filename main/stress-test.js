@@ -28,8 +28,8 @@ const BallComponent = (props) => <div style={props.style}></div>
 const BallsComponent = ({balls}) => {
     const keys = Object.keys(balls)
     const len = keys.length
-    const children = keys.map(idx => <BallComponent style={balls[idx].style}/> )
-    return <div $HasNonKeyedChildren>{children}</div>
+    const children = keys.map(idx => <BallComponent key={idx} style={balls[idx].style}/> )
+    return <div $HasKeyedChildren>{children}</div>
 }
 
 const StessTesterComponent = ({balls, addBalls, fps, speed, getTime}) => {
