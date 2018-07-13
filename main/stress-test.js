@@ -18,6 +18,10 @@ window.initial_state = {balls: {}}
 window.store = createStore(combineReducers({animations: animationsReducer}))
 window.time = startAnimation(window.store, window.initial_state)
 
+const flat_style = (style) => {
+    const style_arr = Object.keys(style).map(key => `${key}: ${style[key]}`)
+    return style_arr.join(';')
+}
 
 const StessTesterComponent = ({balls, addBalls, fps, speed, getTime}) => {
     const keys = Object.keys(balls)
@@ -27,12 +31,12 @@ const StessTesterComponent = ({balls, addBalls, fps, speed, getTime}) => {
         {len} balls animating @ {fps} FPS  🖥
         <br/><br/>
 
-        <div style={{height: 620, width: '100%', padding: 20, position: 'relative', borderRadius: 10, margin: 'auto', backgroundColor: '#ddd'}}>
+        <div style="height: 620px; width: 100%; padding: 20px; position: relative; border-radius: 10px; margin: auto; background-color: #ddd;">
             {keys.map(idx =>
                 <div style={balls[idx].style}></div>)}
             {!len ? 'Click "Add 100 Balls" to start stress-testing.' : ''}
             {(fps && fps < 23 && speed != 0) ?
-                <div style={{position: 'absolute', left: '5%', zIndex: 20, width: '90%', backgroundColor: 'red', padding: 20}}>
+                <div style="position: absolute; left: 5%; z-index: 20; width: 90%; background-color: red; padding: 20px;">
                     Further optimization is needed to render more than ~{len} elements.
                 </div> : ''}
         </div>
@@ -46,7 +50,7 @@ const ball_style = {
     left: '50%',
     width: 20,
     height: 20,
-    borderRadius: 10,
+    borderRadius: 10
 }
 
 let num_balls = 0
@@ -62,7 +66,7 @@ const ADD_BALLS_ANIMATIONS = (start_time, num) => {
                     state: {
                         ...ball_style,
                         top: Math.random() * 600,
-                        left: Math.random() * width,
+                        left: Math.random() * width
                     },
                 }),
                 Translate({
