@@ -23,6 +23,15 @@ const flat_style = (style) => {
     return style_arr.join(';')
 }
 
+const BallComponent = (props) => <div style={props.style}></div>
+
+const BallsComponent = ({balls}) => {
+    const keys = Object.keys(balls)
+    const len = keys.length
+    const children = keys.map(idx => <BallComponent style={balls[idx].style}/> )
+    return <div $HasNonKeyedChildren>{children}</div>
+}
+
 const StessTesterComponent = ({balls, addBalls, fps, speed, getTime}) => {
     const keys = Object.keys(balls)
     const len = keys.length
@@ -30,15 +39,8 @@ const StessTesterComponent = ({balls, addBalls, fps, speed, getTime}) => {
         <Button onClick={() => addBalls(getTime())}>Add 100 Balls</Button> &nbsp;
         {len} balls animating @ {fps} FPS  🖥
         <br/><br/>
-
         <div style="height: 620px; width: 100%; padding: 20px; position: relative; border-radius: 10px; margin: auto; background-color: #ddd;">
-            {keys.map(idx =>
-                <div style={balls[idx].style}></div>)}
-            {!len ? 'Click "Add 100 Balls" to start stress-testing.' : ''}
-            {(fps && fps < 23 && speed != 0) ?
-                <div style="position: absolute; left: 5%; z-index: 20; width: 90%; background-color: red; padding: 20px;">
-                    Further optimization is needed to render more than ~{len} elements.
-                </div> : ''}
+            <BallsComponent balls={balls}/>
         </div>
     </div>
 }
