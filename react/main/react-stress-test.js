@@ -1,9 +1,9 @@
-import {render} from 'inferno'
-
-import Button from 'inferno-bootstrap/dist/Button'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Button from 'react-bootstrap/lib/Button'
 
 import {createStore, combineReducers} from 'redux'
-import {Provider, connect} from 'inferno-redux'
+import {Provider, connect} from 'react-redux'
 
 import {range} from 'redux-time/node/util.js'
 import {animationsReducer, startAnimation} from 'redux-time/node/main.js'
@@ -27,19 +27,18 @@ const BallComponent = (props) => <div style={props.style}></div>
 
 const BallsComponent = ({balls}) => {
     const keys = Object.keys(balls)
-    const len = keys.length
-    const children = keys.map(idx => <BallComponent key={idx} style={balls[idx].style}/> )
-    return <div $HasKeyedChildren>{children}</div>
+    const children = keys.map(idx => <BallComponent style={balls[idx].style}/> )
+    return <div>{children}</div>
 }
 
-const StessTesterComponent = ({balls, addBalls, fps, speed, getTime}) => {
+const StressTesterComponent = ({balls, addBalls, fps, speed, getTime}) => {
     const keys = Object.keys(balls)
     const len = keys.length
     return <div>
         <Button onClick={() => addBalls(getTime())}>Add 100 Balls</Button> &nbsp;
         {len} balls animating @ {fps} FPS  🖥
         <br/><br/>
-        <div style="height: 620px; width: 100%; padding: 20px; position: relative; border-radius: 10px; margin: auto; background-color: #ddd;">
+        <div style={{height: 620, width: '100%', padding: 20, position: 'relative', borderRadius: 10, margin: 'auto', backgroundColor: '#ddd'}}>
             <BallsComponent balls={balls}/>
         </div>
     </div>
@@ -99,17 +98,17 @@ const mapDispatchToProps = (dispatch) => ({
     },
 })
 
-const StessTester = connect(mapStateToProps, mapDispatchToProps)(StessTesterComponent)
+const StressTester = connect(mapStateToProps, mapDispatchToProps)(StressTesterComponent)
 
-const inferno_mount = document.getElementById('inferno')
-inferno_mount.innerHTML = ''
-render(
+const react_mount = document.getElementById('react')
+react_mount.innerHTML = ''
+ReactDOM.render(
     <Provider store={window.store}>
         <div>
-            <StessTester getTime={window.time.getWarpedTime.bind(window.time)}/>
+            <StressTester getTime={window.time.getWarpedTime.bind(window.time)}/>
         </div>
     </Provider>,
-    inferno_mount,
+    react_mount,
 )
 
 window.onmousemove = (e) => {
