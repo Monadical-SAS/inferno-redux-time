@@ -3,7 +3,7 @@
     [
       "stage-2",
       "env",
-      "react",
+      "inferno",
       "es2015-tree-shaking",
       {
         "targets": {

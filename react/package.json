@@ -1,28 +1,31 @@
 {
   "name": "inferno-redux-time",
   "version": "0.0.1",
-  "description": "Example of redux-time using infernojs",
+  "description": "Example of redux-time using react",
   "main": "main/stress-test.js",
   "repository": "git+https://github.com/Monadical-SAS/inferno-redux-time.git",
   "license": "MIT",
   "dependencies": {
     "aliasify": "^2.1.0",
     "babel-cli": "^6.26.0",
-    "babel-plugin-inferno": "^5.0.1",
     "babel-plugin-root-import": "^5.1.0",
     "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-plugin-transform-react-constant-elements": "^6.9.1",
+    "babel-plugin-transform-function-bind": "^6.8.0",
+    "babel-plugin-syntax-function-bind": "^6.13.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015-tree-shaking": "^1.0.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.13.0",
     "babel-runtime": "^6.26.0",
     "babelify": "^8.0.0",
     "browserify": "^16.1.1",
-    "inferno": "^5.1.1",
-    "inferno-bootstrap": "^5.0.2",
-    "inferno-create-element": "^5.1.1",
-    "inferno-redux": "^5.1.1",
     "npm": "^5.8.0",
     "parcel-bundler": "^1.9.6",
+    "react": "^16.4.1",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-saga": "^0.16.0",
@@ -38,26 +41,11 @@
     "presets": [
       "stage-2",
       "es2015-tree-shaking",
-      [
-        "env",
-        {
-          "targets": {
-            "browser": [
-              "> 1%",
-              "last 5 versions",
-              "ie >= 8"
-            ]
-          }
-        }
-      ]
+      "react",
+      "env"
     ],
     "plugins": [
-      [
-        "babel-plugin-inferno",
-        {
-          "imports": true
-        }
-      ],
+      "transform-react-constant-elements",
       [
         "babel-plugin-root-import",
         {
